@@ -96,7 +96,8 @@
       {names:['우유'],kcal:120,c:12,p:6,f:6,unit:'serving'},{names:['샐러드'],kcal:120,c:15,p:5,f:5,unit:'serving'},
       {names:['김치'],kcal:25,c:4,p:2,f:.5,unit:'serving'},{names:['라면'],kcal:500,c:79,p:10,f:16,unit:'count'},
       {names:['식빵','빵'],kcal:150,c:28,p:5,f:2,unit:'count'},{names:['아메리카노','커피'],kcal:10,c:2,p:0,f:0,unit:'serving'},
-      {names:['요거트','요구르트'],kcal:120,c:17,p:6,f:3,unit:'count'},{names:['견과류'],kcal:170,c:6,p:5,f:15,unit:'serving'}
+      {names:['요거트','요구르트'],kcal:120,c:17,p:6,f:3,unit:'count'},{names:['견과류'],kcal:170,c:6,p:5,f:15,unit:'serving'},
+      {names:['토마토'],kcal:22,c:4.8,p:1.1,f:.2,unit:'count'},{names:['오렌지'],kcal:62,c:15.4,p:1.2,f:.2,unit:'count'}
     ];
     function analyzeMeal(text){const total={kcal:0,c:0,p:0,f:0,matched:0};String(text).split(/[,，+]/).forEach(part=>{const food=foodData.find(x=>x.names.some(n=>part.includes(n)));if(!food)return;let amount=part.includes('반')?.5:1;const grams=part.match(/(\d+(?:\.\d+)?)\s*g/i),count=part.match(/(\d+(?:\.\d+)?)\s*(?:개|공기|그릇|잔|접시|인분)/);if(food.unit==='100g'&&grams)amount=+grams[1]/100;else if(count)amount=+count[1];total.kcal+=food.kcal*amount;total.c+=food.c*amount;total.p+=food.p*amount;total.f+=food.f*amount;total.matched++});return total}
     const round=n=>Math.round(n*10)/10;
